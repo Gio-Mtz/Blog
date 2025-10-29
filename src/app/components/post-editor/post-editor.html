@@ -1,0 +1,56 @@
+<mat-card class="editor-card">
+  <mat-card-header>
+    <mat-card-title>{{ isEdit ? 'Editar Post' : 'Nuevo Post' }}</mat-card-title>
+  </mat-card-header>
+
+  <mat-card-content>
+    <form [formGroup]="form" (ngSubmit)="save()">
+      <mat-form-field appearance="outline">
+        <mat-label>Título</mat-label>
+        <input matInput formControlName="title" placeholder="Escribe un título" />
+        <mat-error *ngIf="form.controls['title'].invalid && form.controls['title'].touched">
+          El título es obligatorio
+        </mat-error>
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Contenido</mat-label>
+        <textarea
+          matInput
+          formControlName="content"
+          rows="8"
+          placeholder="Escribe el contenido de tu post"
+        ></textarea>
+      </mat-form-field>
+
+      <div class="file-input">
+        <button type="button" mat-stroked-button (click)="fileInput.click()">
+          <mat-icon>image</mat-icon>
+          Seleccionar imagen
+        </button>
+        <input
+          #fileInput
+          type="file"
+          (change)="onFile($event)"
+          accept="image/*"
+          style="display: none"
+        />
+      </div>
+
+      @if (preview) {
+      <div class="preview-container">
+        <p class="mat-caption">Previsualización:</p>
+        <img [src]="preview" alt="preview" class="preview-image" />
+      </div>
+      }
+
+      <div class="actions">
+        <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+          <mat-icon>{{ isEdit ? 'save' : 'add' }}</mat-icon>
+          {{ isEdit ? 'Guardar cambios' : 'Crear post' }}
+        </button>
+        <a mat-button routerLink="/">Cancelar</a>
+      </div>
+    </form>
+  </mat-card-content>
+</mat-card>

@@ -1,0 +1,20 @@
+<section class="page posts">
+  <div class="topbar">
+    <h1>Mis Posts</h1>
+    <a mat-raised-button color="primary" routerLink="/new">
+      <mat-icon>add</mat-icon>
+      Nuevo post
+    </a>
+  </div>
+
+  @if (posts.length === 0) {
+  <div class="empty-state">
+    <mat-icon class="empty-icon">article</mat-icon>
+    <p>No hay posts aún. Crea uno nuevo.</p>
+  </div>
+  } @else {
+  <div class="grid">
+    <post-item *ngFor="let p of posts" [post]="p" (remove)="onDelete($event)"> </post-item>
+  </div>
+  }
+</section>

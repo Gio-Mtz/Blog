@@ -1,0 +1,23 @@
+.post-card {
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  margin-bottom: 16px;
+}
+.excerpt {
+  margin: 16px 0;
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+mat-card-content {
+  flex-grow: 1;
+}
+img {
+  object-fit: cover;
+  display: block;
+  margin: 0 auto;
+  max-width: 100%;
+}
