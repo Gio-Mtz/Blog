@@ -1,20 +1,21 @@
-<section class="page posts">
-  <div class="topbar">
-    <h1>Mis Posts</h1>
-    <a mat-raised-button color="primary" routerLink="/new">
+<div class="post-list">
+  <div class="post-list__header">
+    <h1>Posts</h1>
+    <a mat-fab color="primary" routerLink="/new" aria-label="Nuevo post">
       <mat-icon>add</mat-icon>
-      Nuevo post
     </a>
   </div>
 
-  @if (posts.length === 0) {
-  <div class="empty-state">
-    <mat-icon class="empty-icon">article</mat-icon>
-    <p>No hay posts aún. Crea uno nuevo.</p>
+  @if (posts().length) {
+  <div class="post-list__grid">
+    @for (post of posts(); track post.id) {
+    <post-item [post]="post" (delete)="onDelete(post.id.toString())" />
+    }
   </div>
   } @else {
-  <div class="grid">
-    <post-item *ngFor="let p of posts" [post]="p" (remove)="onDelete($event)"> </post-item>
+  <div class="post-list__empty">
+    <p>No hay posts disponibles</p>
+    <a mat-raised-button color="primary" routerLink="/posts/new"> Crear el primer post </a>
   </div>
   }
-</section>
+</div>

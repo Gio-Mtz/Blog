@@ -4,18 +4,21 @@
     <mat-card-subtitle>{{ post.createdAt | date : 'medium' }}</mat-card-subtitle>
   </mat-card-header>
 
-  <img mat-card-image [src]="post.imageBase64" width="320" height="180" alt="post image" priority />
+  <!-- <img mat-card-image [src]="post.imageBase64" width="320" height="180" alt="post image" priority /> -->
 
   <mat-card-content>
     <p class="excerpt">{{ post.content }}</p>
   </mat-card-content>
 
   <mat-card-actions align="end">
+    <mat-chip-set style="margin-right: auto">
+      <mat-chip *ngFor="let tag of post.tags" color="primary" selected>{{ tag }}</mat-chip>
+    </mat-chip-set>
     <a mat-button color="primary" [routerLink]="['/edit', post.id]">
       <mat-icon>edit</mat-icon>
       Editar
     </a>
-    <button mat-button color="warn" (click)="remove.emit(post.id)">
+    <button mat-button color="warn" (click)="delete.emit(post.id.toString())">
       <mat-icon>delete</mat-icon>
       Borrar
     </button>

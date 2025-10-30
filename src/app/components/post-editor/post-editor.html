@@ -23,7 +23,39 @@
         ></textarea>
       </mat-form-field>
 
-      <div class="file-input">
+      <mat-form-field appearance="outline">
+        <mat-label>Slug</mat-label>
+        <input matInput formControlName="slug" placeholder="Escribe un slug para la URL" />
+      </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Tags</mat-label>
+        <mat-chip-grid #chipGrid aria-label="Enter tags" formControlName="tags">
+          @for (tag of tags(); track tag) {
+          <mat-chip-row
+            (removed)="remove(tag)"
+            [editable]="true"
+            (edited)="edit(tag, $event)"
+            [aria-description]="'press enter to edit ' + tag"
+          >
+            <button matChipEdit [attr.aria-label]="'edit ' + tag">
+              <mat-icon>edit</mat-icon>
+            </button>
+            {{ tag }}
+            <button matChipRemove [attr.aria-label]="'remove ' + tag">
+              <mat-icon>cancel</mat-icon>
+            </button>
+          </mat-chip-row>
+          }
+          <input
+            placeholder="New tag..."
+            [matChipInputFor]="chipGrid"
+            (matChipInputTokenEnd)="add($event)"
+          />
+        </mat-chip-grid>
+      </mat-form-field>
+
+      <!-- <div class="file-input">
         <button type="button" mat-stroked-button (click)="fileInput.click()">
           <mat-icon>image</mat-icon>
           Seleccionar imagen
@@ -35,7 +67,7 @@
           accept="image/*"
           style="display: none"
         />
-      </div>
+      </div> -->
 
       @if (preview) {
       <div class="preview-container">
