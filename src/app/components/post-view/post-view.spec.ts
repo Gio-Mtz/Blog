@@ -1,0 +1,22 @@
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+
+import { PostViewComponent } from './post-view';
+
+describe('PostView', () => {
+  let component: PostViewComponent;
+  let fixture: ComponentFixture<PostViewComponent>;
+
+  beforeEach(async () => {
+    await TestBed.configureTestingModule({
+      imports: [PostViewComponent],
+    }).compileComponents();
+
+    fixture = TestBed.createComponent(PostViewComponent);
+    component = fixture.componentInstance;
+    fixture.detectChanges();
+  });
+
+  it('should create', () => {
+    expect(component).toBeTruthy();
+  });
+});

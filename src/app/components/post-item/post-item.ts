@@ -22,5 +22,4 @@ import { MatChipsModule } from '@angular/material/chips';
 })
 export class PostItemComponent {
   @Input() post!: Post;
-  @Output() delete = new EventEmitter<string>();
 }

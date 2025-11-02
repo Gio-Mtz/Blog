@@ -19,6 +19,7 @@ import { MatSnackBar, MatSnackBarModule } from '@angular/material/snack-bar';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { finalize } from 'rxjs';
 import { MatChipEditedEvent, MatChipInputEvent, MatChipsModule } from '@angular/material/chips';
+import { AngularEditorConfig, AngularEditorModule } from '@kolkov/angular-editor';
 
 @Component({
   selector: 'post-editor',
@@ -35,6 +36,7 @@ import { MatChipEditedEvent, MatChipInputEvent, MatChipsModule } from '@angular/
     MatSnackBarModule,
     MatProgressBarModule,
     MatChipsModule,
+    AngularEditorModule,
   ],
   templateUrl: './post-editor.html',
   styleUrls: ['./post-editor.scss'],
@@ -47,6 +49,23 @@ export class PostEditorComponent implements OnInit {
   preview?: string | null;
   isLoading = false;
   announcer = inject(LiveAnnouncer);
+  editorConfig: AngularEditorConfig = {
+    editable: true,
+    spellcheck: true,
+    height: 'auto',
+    minHeight: '20vh',
+    maxHeight: 'auto',
+    width: 'auto',
+    minWidth: '0',
+    translate: 'yes',
+    enableToolbar: true,
+    showToolbar: true,
+    placeholder: 'Enter text here...',
+    defaultParagraphSeparator: '',
+    sanitize: true,
+    toolbarPosition: 'top',
+  };
+
   readonly tags = signal<string[]>([]);
 
   constructor(
@@ -62,6 +81,7 @@ export class PostEditorComponent implements OnInit {
       imageBase64: [null],
       slug: [''],
       tags: [''],
+      directoryRoute: [''],
     });
   }
 
@@ -83,6 +103,7 @@ export class PostEditorComponent implements OnInit {
               imageBase64: post.imageBase64 || null,
               slug: post.slug,
               tags: post.tags ? post.tags.join(', ') : '',
+              directoryRoute: post.directoryRoute || '',
             });
             this.preview = post.imageBase64 || null;
             this.tags.set(post.tags || []);
@@ -151,6 +172,7 @@ export class PostEditorComponent implements OnInit {
       imageBase64: this.form.value.imageBase64,
       slug: this.form.value.slug || this.generateSlug(this.form.value.title),
       tags: this.form.value.tags ? this.form.value.tags : [],
+      directoryRoute: this.form.value.directoryRoute || '',
     };
 
     this.isLoading = true;

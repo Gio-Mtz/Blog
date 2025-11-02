@@ -7,4 +7,5 @@ export interface Post {
   imageBase64?: string | null;
   tags?: string[];
   slug: string;
+  directoryRoute?: string;
 }

@@ -13,20 +13,16 @@
         </mat-error>
       </mat-form-field>
 
-      <mat-form-field appearance="outline">
-        <mat-label>Contenido</mat-label>
-        <textarea
-          matInput
-          formControlName="content"
-          rows="8"
-          placeholder="Escribe el contenido de tu post"
-        ></textarea>
-      </mat-form-field>
+      <angular-editor
+        formControlName="content"
+        [config]="editorConfig"
+        style="background-color: white; color: black"
+      ></angular-editor>
 
-      <mat-form-field appearance="outline">
+      <!-- <mat-form-field appearance="outline">
         <mat-label>Slug</mat-label>
         <input matInput formControlName="slug" placeholder="Escribe un slug para la URL" />
-      </mat-form-field>
+      </mat-form-field> -->
 
       <mat-form-field appearance="outline">
         <mat-label>Tags</mat-label>

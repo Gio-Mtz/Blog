@@ -1,6 +1,6 @@
 <div class="post-list">
   <div class="post-list__header">
-    <h1>Posts</h1>
+    <h1></h1>
     <a mat-fab color="primary" routerLink="/new" aria-label="Nuevo post">
       <mat-icon>add</mat-icon>
     </a>
@@ -9,13 +9,13 @@
   @if (posts().length) {
   <div class="post-list__grid">
     @for (post of posts(); track post.id) {
-    <post-item [post]="post" (delete)="onDelete(post.id.toString())" />
+    <post-item [post]="post" />
     }
   </div>
   } @else {
   <div class="post-list__empty">
     <p>No hay posts disponibles</p>
-    <a mat-raised-button color="primary" routerLink="/posts/new"> Crear el primer post </a>
+    <a mat-raised-button color="primary" routerLink="/new"> Crear el primer post </a>
   </div>
   }
 </div>

@@ -4,6 +4,13 @@
   flex-direction: column;
   margin-bottom: 16px;
 }
+
+.post-card:hover {
+  box-shadow: 0 4px 20px rgba(255, 255, 255, 0.5);
+  transform: translateY(-2px);
+  transition: all 0.15s ease;
+}
+
 .excerpt {
   margin: 16px 0;
   display: -webkit-box;
@@ -12,12 +19,19 @@
   -webkit-box-orient: vertical;
   overflow: hidden;
 }
+
 mat-card-content {
   flex-grow: 1;
 }
+
 img {
   object-fit: cover;
   display: block;
   margin: 0 auto;
   max-width: 100%;
+}
+
+.mat-mdc-card-content {
+  display: block;
+  padding: 0 30px;
 }

@@ -29,7 +29,6 @@ export class PostService {
   }
 
   create(payload: Omit<Post, 'id' | 'createdAt' | 'updatedAt'>): Observable<Post> {
-    console.log(payload);
     return this.http.post<Post>(API_URL, payload).pipe(
       tap((newPost) => {
         this.postsSignal.update((posts) => [newPost, ...posts]);
@@ -59,9 +58,12 @@ export class PostService {
     );
   }
 
-  clearAll(): void {
-    // Esta funcionalidad probablemente debería eliminarse o restringirse
-    // ya que normalmente no querrás borrar toda la base de datos
-    console.warn('clearAll() is disabled when using API backend');
-  }
+  // getGroupedByRoute(): { [route: string]: Post[] } {
+  // const groups: { [route: string]: Post[] } = {};
+  // for (const post of this.posts()) {
+  //   if (!groups[post.directoryRoute]) groups[post.directoryRoute] = [];
+  //   groups[post.directoryRoute].push(post);
+  // }
+  // return groups;
+  // }
 }
